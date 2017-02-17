@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Towed Cars by Make </title>
+        <title>Towed Car Data </title>
     </head>
     <body>
-        <h1>Towed Cars by Make</h1>
+        <h1>Towed Car Data</h1>
         <button id="submit">Submit</button>
         <div id="results"></div>
         
@@ -12,6 +12,14 @@
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script>
+            /*
+                This script retrieves the towed data information
+                from the City of Chicago Data Portal
+                
+                You are required to enter the information for your vehicle
+                as a license plate number
+            
+            */
             
             var towedVehicle;
             
@@ -25,8 +33,9 @@
                     
                         
                     $.getJSON(url).done (function (data) {
-                       
+                        // TODO:  add script to add data to the DOM
                         console.log(data);
+                        // loop through the records
                         
                         towedVehicle = data;
                         
@@ -60,6 +69,10 @@
                                         CHRY++;
                                     else if(make == "DODG")
                                         DODG++;
+                        /*            else if(make == "TOYT")
+                                        grn++;
+                                    else if(make == "FORD")
+                                        blu++;*/
                                     else
                                         oth++;
                                 }
@@ -85,19 +98,19 @@
                     
                             // Create the data table.
                             var data = new google.visualization.DataTable();
-                            data.addColumn('string', 'Car Make');
+                            data.addmakeumn('string', 'Car Make');
                             data.addColumn('number', 'Quantity');
                             data.addRows([
                               ['Acura', ACUR],
                               ['Audi', AUDI],
                               ['BMW', BMW],
-                              ['Jeep', JEEP],
+                              ['JeeP', JEEP],
                               ['Toyota', TOYT],
                               ['Ford', FORD],
-                              ['Chevy', CHEV],
-                              ['Honda', HOND],
-                              ['CHRY', CHRY],
-                              ['DODG', DODG],
+                              ['Red', CHEV],
+                              ['Black', HOND],
+                              ['White', CHRY],
+                              ['Grey', DODG],
                               ['Other', oth]
                             ]);
                     
