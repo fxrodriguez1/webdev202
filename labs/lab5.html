@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Types of Crimes </title>
+    </head>
+    <body>
+        <h1>Types of Crimes this year</h1>
+        <button id="submit">Submit</button>
+        <div id="results"></div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <script>
+            
+            var crime;
+            
+            $(function(){
+                
+                $("#submit").click(function(){
+                    
+                    var html = "";
+                    
+                    var url = 'https://data.cityofchicago.org/resource/6zsd-86xi.json';
+                    
+                        
+                    $.getJSON(url).done (function (data) {
+                       
+                        console.log(data);
+                        
+                        crime = data;
+                        
+                        var crimeYear = crime[0].year;
+
+                        var ACUR = 0, AUDI = 0, BMW = 0,JEEP = 0, TOYT = 0, FORD = 0, CHEV = 0, HOND = 0, CHRY = 0, DODG=0, oth = 0;
+                        
+                        if(crime.length == 0){
+                            html = "No crime";
+                        } else{
+                            $.each(crime, function(index, value){
+                                if(value.year == crimeYear){
+                                    var type = value.primary_type;
+                                    if (type == "ROBBERY")
+                                        ROBBERY++;
+                                    else if(type == "ASSAULT")
+                                        ASSAULT++;
+                                    else if(type == "THEFT")
+                                        THEFT++;
+                                    else if(type == "JEEP")
+                                        JEEP++;
+                                    else if(type == "TOYT")
+                                        TOYT++;
+                                    else if(type == "FORD")
+                                        FORD++;
+                                    else if(type == "CHEV")
+                                        CHEV++;
+                                    else if(type == "HOND")
+                                        HOND++;
+                                    else if(type == "CHRY")
+                                        CHRY++;
+                                    else if(type == "DODG")
+                                        DODG++;
+                                    else
+                                        oth++;
+                                }
+                            })  // end of .each loop
+                            
+                            /*html = "<p>Black: " + blk + "<br>" +
+                                    "White: " + whi + "<br>" +
+                                    "Grey: " + gry + "<br>" +
+                                    "Silver: " + sil + "<br>" +
+                                    "Green: " + grn + "<br>" +
+                                    "Blue: " + blu + "<br>" +
+                                    "Red: " + red + "</p>";*/
+                            // Load the Visualization API and the corechart package.
+                          google.charts.load('current', {'packages':['corechart']});
+                    
+                          // Set a callback to run when the Google Visualization API is loaded.
+                          google.charts.setOnLoadCallback(drawChart);
+                    
+                          // Callback that creates and populates a data table,
+                          // instantiates the pie chart, passes in the data and
+                          // draws it.
+                          function drawChart() {
+                    
+                            // Create the data table.
+                            var data = new google.visualization.DataTable();
+                            data.addColumn('string', 'Car Make');
+                            data.addColumn('number', 'Quantity');
+                            data.addRows([
+                              ['Acura', ACUR],
+                              ['Audi', AUDI],
+                              ['BMW', BMW],
+                              ['Jeep', JEEP],
+                              ['Toyota', TOYT],
+                              ['Ford', FORD],
+                              ['Chevy', CHEV],
+                              ['Honda', HOND],
+                              ['CHRY', CHRY],
+                              ['DODG', DODG],
+                              ['Other', oth]
+                            ]);
+                    
+                            // Set chart options
+                            var options = {'title':'Make of Cars towed ' + date,
+                                           'width':400,
+                                           'height':300};
+                    
+                            // Instantiate and draw our chart, passing in some options.
+                            var chart = new google.visualization.PieChart(document.getElementById('results'));
+                            chart.draw(data, options);
+                          }
+                        }
+                        
+                        //$("#results").html(html);
+                        
+                    }) // end of getJSON function
+                    
+                })  // end of click function
+                
+            }) // end of ready command
+            
+            
+        </script>
+    </body>
+</html>
