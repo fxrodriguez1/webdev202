@@ -32,7 +32,7 @@
                         
                         var crimeYear = crime[0].year;
 
-                        var ACUR = 0, AUDI = 0, BMW = 0,JEEP = 0, TOYT = 0, FORD = 0, CHEV = 0, HOND = 0, CHRY = 0, DODG=0, oth = 0;
+                        var ROBBERY = 0, ASSAULT = 0, THEFT = 0,CRIMINAL_DAMAGE = 0, CRIMINAL_TRESPASS= 0, BATTERY = 0, NARCOTICS = 0,MOTOR_VEHICLE_THEFT  = 0, WEAPONS_VIOLATION = 0, DECEPTIVE_PRACTICE=0, oth = 0;
                         
                         if(crime.length == 0){
                             html = "No crime";
@@ -46,32 +46,25 @@
                                         ASSAULT++;
                                     else if(type == "THEFT")
                                         THEFT++;
-                                    else if(type == "JEEP")
-                                        JEEP++;
-                                    else if(type == "TOYT")
-                                        TOYT++;
-                                    else if(type == "FORD")
-                                        FORD++;
-                                    else if(type == "CHEV")
-                                        CHEV++;
-                                    else if(type == "HOND")
-                                        HOND++;
-                                    else if(type == "CHRY")
-                                        CHRY++;
-                                    else if(type == "DODG")
-                                        DODG++;
+                                    else if(type == "CRIMINAL DAMAGE")
+                                        CRIMINAL_DAMAGE++;
+                                    else if(type == "CRIMINAL TRESPASS")
+                                        CRIMINAL_TRESPASS++;
+                                    else if(type == "BATTERY")
+                                        BATTERY++;
+                                    else if(type == "NARCOTICS")
+                                        NARCOTICS++;
+                                    else if(type == "MOTOR VEHICLE THEFT")
+                                        MOTOR_VEHICLE_THEFT++;
+                                    else if(type == "WEAPONS VIOLATION")
+                                        WEAPONS_VIOLATION++;
+                                    else if(type == "DECEPTIVE PRACTICE")
+                                        DECEPTIVE_PRACTICE++;
                                     else
                                         oth++;
                                 }
                             })  // end of .each loop
                             
-                            /*html = "<p>Black: " + blk + "<br>" +
-                                    "White: " + whi + "<br>" +
-                                    "Grey: " + gry + "<br>" +
-                                    "Silver: " + sil + "<br>" +
-                                    "Green: " + grn + "<br>" +
-                                    "Blue: " + blu + "<br>" +
-                                    "Red: " + red + "</p>";*/
                             // Load the Visualization API and the corechart package.
                           google.charts.load('current', {'packages':['corechart']});
                     
@@ -85,26 +78,26 @@
                     
                             // Create the data table.
                             var data = new google.visualization.DataTable();
-                            data.addColumn('string', 'Car Make');
+                            data.addColumn('string', 'Crime Types');
                             data.addColumn('number', 'Quantity');
                             data.addRows([
-                              ['Acura', ACUR],
-                              ['Audi', AUDI],
-                              ['BMW', BMW],
-                              ['Jeep', JEEP],
-                              ['Toyota', TOYT],
-                              ['Ford', FORD],
-                              ['Chevy', CHEV],
-                              ['Honda', HOND],
-                              ['CHRY', CHRY],
-                              ['DODG', DODG],
+                              ['Robbery', ROBBERY],
+                              ['Assault', ASSAULT],
+                              ['Theft', THEFT],
+                              ['Criminal Damage', CRIMINAL_DAMAGE],
+                              ['Criminal Trespass', CRIMINAL_TRESPASS],
+                              ['Battery', BATTERY],
+                              ['Narcotics', NARCOTICS],
+                              ['Motor Vehicle Theft', MOTOR_VEHICLE_THEFT],
+                              ['Weapons Violation', WEAPONS_VIOLATION],
+                              ['Deceptive Practice', DECEPTIVE_PRACTICE],
                               ['Other', oth]
                             ]);
                     
                             // Set chart options
-                            var options = {'title':'Make of Cars towed ' + date,
-                                           'width':400,
-                                           'height':300};
+                             var options = {'title':'Types of Crimes this year',
+                                           'width':600,
+                                           'height':500};
                     
                             // Instantiate and draw our chart, passing in some options.
                             var chart = new google.visualization.PieChart(document.getElementById('results'));
