@@ -1,19 +1,19 @@
 body {
     text-align: center;
-    background-color: #21618C;
 }
 .box {
     background-color: #810606;
     width: 100%;
+    border: 1px solid black;
 }
 h1 {
     color: white;
     padding-left: 10px;
 }
  div {
-    border: 5px solid ; 
     margin: 1px; 
     border-radius: 10px; 
+    word-wrap: break-word;
  }
 .homeLink {
     font-size: 55px;
@@ -29,7 +29,7 @@ br {
 }
 p {
     padding-left: 10px;
-    font-size: 18px;
+    font-size: 14px;
     color: white;
 }
 h2 {
@@ -55,4 +55,34 @@ h2 {
     height: 60vh;
     padding-top: 100px;
     font-size: 45px;
+}
+
+#bigContainer {
+    width: 100%;
+    border: none;
+}
+.container {
+    float: left;
+    width: 23.5%;
+    border: 5px solid black;
+}
+#br1 {
+    clear: left;
+}
+.box {
+    border: 1px solid black;
+}
+.mediumcontainer {
+    width: 50%;
+}
+body {
+    background: #005C97; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #005C97 , #363795); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #005C97 , #363795); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#enterButton {
+    border: 2px solid white;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
 }

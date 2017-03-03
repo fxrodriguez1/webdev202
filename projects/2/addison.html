@@ -8,7 +8,14 @@
 </head>
 <body>
   <h1>Route #152 (Addison)</h1>
-
+  <h1 id = 'mainHead'>Bus Time Predictions</h1>
+    <div id = 'bigContainer'>  
+      <div id = "Eastbound" class = 'container'></div>
+      <div id = "Westbound" class = 'container'></div>
+      <div id = "Northbound" class = 'container'></div>
+      <div id = "Southbound" class = 'container'></div>
+    </div>
+    <br id = "br1">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script>
         $(function() {
@@ -30,10 +37,9 @@
                       "format":"json"}
             }).done (function (data) {
               console.log(data);
-              $("body").append("<h1 id = 'mainHead'>Bus Time Predictions</h1>");
              
               $.each(data["bustime-response"]["prd"], function(i,v) {
-                  $("body").append("<div class = 'box'>" + 
+                  $("#" + v.rtdir).append("<div class = 'box' id = 'wbBusBox'>" + 
                   "<h2 id = 'stopHead'>Stop: " 
                   + v.stpnm + "</h2>" + "<br>" + 
                   "<p class = 'nobr'> Direction: "
