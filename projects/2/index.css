@@ -38,20 +38,14 @@ h2 {
     padding-left: 10px;
     color: white;
 }
-#homeLinkA {
-    float: left;
-    color: white;
-    width: 48%;
-    height: 12vh;
-}
 #bigContainer {
     width: 100%;
     border: none;
 }
 .container {
     float: left;
-    width: 24%;
-    border: noe;
+    width: 49%;
+    border: none;
     padding: 4px;
 }
 #br1 {
@@ -91,4 +85,7 @@ a.nounderline:link
 }  
 .nunito {
         font-family: nunito, sans-serif;
+}
+#homeLinkB {
+    height: 80vh;
 }

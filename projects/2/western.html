@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bus Stop Predictions</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200|Raleway" rel="stylesheet">
+</head>
+<body class = "nunito">
+  <h1>Bus Time Predictions</h1>
+    <div class = "mediumContainer">  
+      <h1>Western</h1>    
+        <div id = 'Northbound' class = "container"><h1 class = "directionHead">Northbound</h1></div>
+        <div id = 'Southbound' class = "container"><h1 class = "directionHead">Southbound</h1></div>
+    </div>    
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "xiP5GrU6kqvnMUgxPeMwATG2v",
+                      "rt" : "49",
+                      "stpid" :"8417,8195",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $("#" + v.rtdir).append("<div class = 'box'>" + 
+                  "<h2 id = 'stopHead'>Stop: " 
+                  + v.stpnm + "</h2>" + "<div id = 'contents>'" + "<br>" + 
+                  "<p class = 'nobr'> Direction: "
+                  + v.rtdir + "</p>" +
+                  "<p> Destination: " + v.des + "</p>" 
+                  + "<p class = 'bold' id = estimate>"+ "Time until Arrival: "
+                  + v.prdctdn + " minutes" + "</p>" + "</div>"
+                   ) 
+                + "</div>";
+              });
+
+            });
+        });
+</script>
+ 
+</body>
