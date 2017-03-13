@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Food Inspection Example</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            .Fail {background-color: red;}
+            div { border: 1px solid black; 
+            margin: 4px; 
+            border-radius: 5px; 
+            background-color: #484948;
+            color: white;    
+            }
+            .Out{
+                background-color: yellow;
+                color: black;
+            }
+            .Pass {
+                background-color: #C0D9AF;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>AJAX and DOM Manipulation</h1>
+    <p>A script on this page makes a call to the City of Chicago Data Portal to get Food Inspection data for zip 60618 for the 4th quarter of 2016.  The results are logged to the console and are stored as a variable named <strong>inspections</strong>.  You'll modify the script to update the DOM by adding inspections information to the body element.
+    </p>
+    
+    <p>A couple of things that might help:</p>
+    <ul>
+        <li>jQuery <strong>.append()</strong> method (<a href="http://www.w3schools.com/jquery/html_append.asp">http://www.w3schools.com/jquery/html_append.asp</a>)</li>
+        <li>
+            The Food Inspection data set at City of Chicago Data Portal (<a href="https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5">https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5</a>)  
+            Click the <strong>Export</strong> button and expand the <strong>SODA API</strong> panel to see the names of the data elements you'll be able to display.
+        </li>
+    </ul>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves food inspection data for zip 60618
+            for the 4th quarter of 2016 from the 
+            City of Chicago Data Portal
+            
+            It stores the returned results in a variable named inspections.
+            
+            This script doesn't update the DOM.
+        
+        
+        */
+        //  variable to hold the returned data
+        var inspections;
+        
+        // base URL to the food inspections data
+        var inspectionsBaseURL = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
+        
+        // optional filters we're appending - date range and zip
+        var filters = '?$where=inspection_date%20between%20%272016-10-01T00:00:00%27%20and%20%272017-01-01T00:00:00%27%20and%20zip=60618';
+        
+        // full URL
+        var inspectionsUrl = inspectionsBaseURL + filters;
+        
+        console.log (inspectionsUrl);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(inspectionsUrl)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+                    inspections = data;
+                    
+                    // loop through the records
+                    $.each(inspections, function(index, value){
+                        var html =  "<div class=" + value.results + 
+                                    "><h1>" + value.aka_name + "</h1>" +
+                                    "<p>" + value.facility_type + "<br>" +
+                                    value.results + "<br>" + value.address 
+                                    + "<br>" + "Latitude: " + 
+                                    value.latitude + "<br>" + "Longitude: " + 
+                                    value.longitude
+                                    "</p>" +
+                                    "</div>";
+                        
+                        $("body").append(html);
+                    });
+                    
+                    
+                    
+
+                    
+                })
+            
+            
+        )
+        
+        
+    </script>
+    </body>
+</html>

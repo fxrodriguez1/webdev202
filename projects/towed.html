@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Towed Vehicles</title>
+        <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+        <style>
+            body {
+                background-color: #C2EBFF;
+            }
+            p, h1 {
+                font-family: helvetica;
+                color: white;
+            }
+            p {
+                font-size:1.5em;
+                line-height:1.5em; 
+                margin-left: 24px;
+                color: white;
+            }
+            pre {
+                font-size: 2em;
+            }
+            div {
+                border: 10px solid black; 
+                margin: 12px; 
+                border-radius: 15px; 
+            }
+            .box {
+                background-color: crimson;
+            }
+            .titleText {
+                font-family: 'Chewy', cursive;
+                color: crimson;
+            }
+            #plateNum {
+                padding-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+    <h1 class = "titleText">Where is my car?</h1>
+    <input type="text" id='input' name="search" placeholder="Enter License plate">
+<button id='submit'>Submit</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+/*
+This script retrieves 311 pot hole service request data for 
+from the 
+City of Chicago Data Portal
+
+This script doesn't update the DOM.
+
+*/
+
+$('#submit').click(function(){
+var baseURL = 'https://data.cityofchicago.org/resource/ygr5-vcbg.json';
+var license = $('#input').val();
+var filters = '?plate=' + license;
+// full URL
+var url = baseURL + filters;
+console.log(url);
+console.log(license)
+
+// jQuery command to retrieve json data
+
+$.getJSON(url)
+.done (function (data) {
+// TODO: add script to add data to the DOM
+console.log(data);
+
+// loop through the records
+
+$.each(data, function(index, value){
+var html = "<div class = 'box'>" + "<hr>" + "<h1 id = 'plateNum'> Plate Number: " + value.plate + "</h1>" +
+"<p>Color: " + value.color + "</p>" + 
+"<p>Make: " + value.make + "</p>" +
+"<p>State: " + value.state + "</p>" +
+"<p>Tow Date: " +value.tow_date + "</p>" +
+"<p>Towed to Address: " + value.towed_to_address +"</p>" +
+"<p>Inventory Number: " + value.inventory_number + "</p>" +
+"<p>Tow Facility Phone: " + value.tow_facility_phone + "</p>" +
+"<hr>" +
+"</div>"
+"</div>";
+
+$("body").append(html);
+
+});
+
+})
+
+})
+
+</script>
+    </body>
+</html>        
