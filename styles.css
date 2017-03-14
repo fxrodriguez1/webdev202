@@ -11,7 +11,7 @@
 }
 
 .mdl-layout__title {
-  font-size: 14px;
+  font-size: 48px;
   text-align: center;
   font-weight: 300;
 }
@@ -28,13 +28,13 @@
   min-height: auto;
 }
 
-.portfolio-logo {
+/*.portfolio-logo {
   background: url(images/logo.png) 50% no-repeat;
   background-size: cover;
   height: 150px;
   width: 150px;
   margin: auto auto 10px;
-}
+}*/
 
 .is-compact .portfolio-logo {
   height: 50px;
