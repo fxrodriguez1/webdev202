@@ -13,32 +13,17 @@
         <meta name="msapplication-TileColor" content="#2F3BA2">
     </head>
     <body id = #homebody>
-        <!--<a href ="addison.html" class = 'nounderline'><div class = "enterButton">
-            <h1 id = "inst"> Addison </h1>
-        </a>
-        <br id = 'homeBreak'>
-        <div id = 'homeLinkB'>
-        <a href ="western.html" class = 'nounderline'><div class = "enterButton">
-            <h1 id = "inst">Western</h1></div>
-        </div>
-        </a>-->
+    <div id = "pred"></div>    
+        <h1 id = "welcome">Select a route from the dropdown to find it's times</h1>
         <div class="dropdown">
             <button onclick="showRoutes()" class="dropbtn">Routes</button>
             <div id="routeDropdown" class="dropdown-content">
                 
             </div>
         </div>
-        <div id = 'dirSelect'>
-            <ul id = "directions">
-                <li id = listhead> Choose Route Direction </li>
-                <a href = # class = 'direction' id = 'Northbound'><li>Northbound</li></a>
-                <a href = # class = 'direction' id = 'Southbound'><li>Southbound</li></a>
-                <a href = # class = 'direction' id = 'Eastbound'><li>Eastbound</li></a>
-                <a href = # class = 'direction' id = 'Westbound'><li>Westbound</li></a>
-            </ul>
-        </div>
+        <div id = "directions"></div>
+        
         <div id = 'stops'></div>
-        <div id = "predictions"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
@@ -95,15 +80,42 @@
              var route = $(this).attr("id");
              
              console.log(route);
-         $("body").on("click", ".direction", function(e) {
+            
+            $(function() {
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+        
+            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getdirections";
+            
+             $.ajax({
+                 url: apiPassThruUrl,
+                 dataType: "json",
+                 method: 'GET',
+                 data: {
+                     "apiEndpoint": apiEndpoint,
+                     "key": "xiP5GrU6kqvnMUgxPeMwATG2v",
+                     "rt": route,
+                     "format": "json"
+                 }
+             }).done (function (data) {
+              console.log(data);
+              $("#directions").append(
+                 "<h1 class = 'directionSelect'>" + "Select a direction below" + "</h1>" + "<br>"  
+              );
+              $.each(data["bustime-response"]["directions"], function(i,v) {
+                  $("#directions").append(
+                      "<a href = '#' id =" + v.dir + " class = directionSelect" + ">" + v.dir + "</a>" + "<br>"
+                    );
+              });
+              $("body").on("click", ".directionSelect", function(e) {
              
              var direction = $(this).attr("id");
              
-             console.log(direction);     
+             console.log(direction);  
              
-            
-         
-        $(function() {
+             $(".directionSelect").hide();
+             
+              
+            $(function() {
             var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
         
             var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getstops";
@@ -128,7 +140,13 @@
               });
             
             });     
+         });  
+              });
+            });
+            
          });
+         
+        
         $("body").on("click", ".stopSelect", function(e) {
              
              var stop = $(this).attr("id");
@@ -137,29 +155,32 @@
              
              $(".stopSelect").hide();
              $(".dropdown").hide();
-             $("#dirSelect").hide();
-        
-            $(function() {
-            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
-        
-            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
-            
-             $.ajax({
-                 url: apiPassThruUrl,
-                 dataType: "json",
-                 method: 'GET',
-                 data: {
-                     "apiEndpoint": apiEndpoint,
-                     "key": "xiP5GrU6kqvnMUgxPeMwATG2v",
-                     "rt": route,
-                     "stpid" : stop,  
-                     "format": "json"
-                 }
-             }).done (function (data) {
+             $("#welcome").hide();
+             
+             $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "xiP5GrU6kqvnMUgxPeMwATG2v",
+                      "rt" : route,
+                      "stpid" :stop,
+                      "format":"json"}
+            }).done (function (data) {
               console.log(data);
+              $("#pred").append("<h1 id = 'predictionHeader'>" + 
+              "Bus Time Predictions" + "</h1>" + "<p>" + "<br>"
+              + "Refresh to see another route" + "</p>");
               $.each(data["bustime-response"]["prd"], function(i,v) {
-                  $("#predictions").append(
-                     "<div class = 'box'>" + 
+                  $("#pred").append("<div class = 'box'>" + 
                   "<h2 id = 'stopHead'>Stop: " 
                   + v.stpnm + "</h2>" + "<div id = 'contents>'" + "<br>" + 
                   "<p class = 'nobr'> Direction: "
@@ -168,16 +189,17 @@
                   + "<p class = 'bold' id = estimate>"+ "Time until Arrival: "
                   + v.prdctdn + " minutes" + "</p>" + "</div>"
                    ) 
-                + "</div>"; 
+                + "</div>";
               });
-            
-            });     
-         });
-                        
-        }); 
+              $.each(data["bustime-response"]["error"], function(i,v) {
+                $("#pred").append("<h1 id = 'error'>" + v.msg + "</h1>");  
+              });
+
+            });
+        });
+             });     
         }); 
         });
-        }); 
         </script>
     </body>
 </html>

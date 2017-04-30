@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-amber.min.css" />
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="indexedDB.css">
+  </head>
+  <body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Title</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+          <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+          <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+      </div>
+      <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+          <div class="page-content">
+            <button id = 'startButton'>Do Something</button>
+            <div id = 'results'>
+              
+            </div>
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+          <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+          <div class="page-content"><!-- Your content goes here --></div>
+        </section>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script>
+    $("#startButton").click(function(){
+              
+        var baseURL = "https://data.cityofchicago.org/resource/tt4n-kn4t.json";
+        
+        var filters = "?department=CITY%20COUNCIL";
+        
+        var fullURL = baseURL + filters;
+        
+        console.log(fullURL);
+        
+        $.getJSON(fullURL)
+          .done (function (data) {
+          // TODO:  add script to add data to the DOM
+          console.log(data);
+      
+        var db = new Dexie('employeeDB');
+
+	   // Define a schema
+	   db.version(1).stores({
+		  employees: '++id,name,department,title,salary'
+	   });
+	   
+	   db.employees.count().then(function(count){
+	      console.log(count);
+	      
+	      if(count == 0) {
+	        $.each(data, function (i,v) {
+	            db.employees.add({
+	              name: v.name,
+	              title: v.job_titles,
+	              salary: v.employee_annual_salary,
+	              department: v.department});
+          });
+	   
+	        db.open().catch(function(error) {
+	            alert('Uh oh : ' + error);
+	        });
+	      }
+	   
+          $.each(data, function(i, v){
+            var html = "<div id = 'box'>" + "<h1>" + v.name + "</h1>" 
+                       + "<br>" + "<p>" + "Title: " + v.job_titles 
+                       + "<br>" + "Salary: " + v.employee_annual_salary 
+                       + "<br>" + "Department: " + v.department +
+                       "</div>";
+
+          $("#results").append(html);
+          
+            
+          });	   
+	     
+	   });
+    
+    
+  });   
+
+      
+});
+              
+    </script>
+  </body>
+</html>

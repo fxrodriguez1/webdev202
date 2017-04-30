@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+      <!-- Include Dexie -->
+      <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+
+      <script>
+          //
+          // Define your database
+          //
+          var db = new Dexie("friend_database");
+          db.version(1).stores({
+              friends: 'name,shoeSize'
+          });
+
+          //
+          // Put some data into it
+          //
+          db.friends.put({name: "Brian", shoeSize: 10});
+           
+      </script>
+  </head>
+</html>

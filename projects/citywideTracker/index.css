@@ -1,9 +1,10 @@
 body {
     text-align: center;
     font-family: 'Raleway', sans-serif;
+    color: white;
 }
 .box {
-    background-color: #66cc99;
+    background-color: #b92938;
     width: 100%;
     border: 1px solid black;
 }
@@ -131,3 +132,13 @@ a.nounderline:link
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+ul {
+    list-style-type: none;
+}
+li, a {
+    color: white;
+    text-decoration: none;
+}
+#error {
+    font-size: 75px;
+}
