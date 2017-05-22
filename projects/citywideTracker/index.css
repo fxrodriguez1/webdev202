@@ -5,8 +5,9 @@ body {
 }
 .box {
     background-color: #b92938;
-    width: 100%;
+    width: 50%;
     border: 1px solid black;
+    margin: 0 auto;
 }
 h1 {
     color: white;
@@ -39,32 +40,19 @@ h2 {
     padding-left: 10px;
     color: white;
 }
-#bigContainer {
-    width: 100%;
-    border: none;
-}
-.container {
-    float: left;
-    width: 49%;
-    border: none;
-    padding: 4px;
-}
 #br1 {
     clear: left;
-}
-.box {
-    border: 1px solid black;
 }
 .mediumcontainer {
     width: 50%;
     display: inline-block;
 }
 body {
-    background: #2980b9;
+    bbackground: #C33764;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #2c3e50, #2980b9);
+    background: -webkit-linear-gradient(to right, #1D2671, #C33764);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #2c3e50, #2980b9);
+    background: linear-gradient(to right, #1D2671, #C33764);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 #enterButton {
@@ -141,4 +129,61 @@ li, a {
 }
 #error {
     font-size: 75px;
+}
+.stopSelector {
+    display: none;
+}
+#Red {
+    background-color: #DC143C;
+}
+#Blue {
+    background-color: #7994FF;
+}
+#G {
+    background-color: #32CD32;
+}
+#Pink {
+    background-color: #FFC0CB;
+}
+#Brn {
+    background-color: #392020;
+}
+#Org {
+    background-color: #E67E22;
+}
+#P {
+    background-color: #4B0082;
+}
+#Y {
+    background-color: #F4D03F;
+}
+.dirBox {
+    width: 48%;
+    height: 100%;
+    float: left;
+}
+.dropdowncontentTrains a {
+    color: white;
+}
+.trainBox {
+    background-color: #b92938;
+    width: 95%;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 0 auto;
+}
+.toTracker {
+    position: fixed;
+    left: 10px;
+    top: 5px;
+    padding-bottom: 100px;
+}
+#followBtn {
+    color: yellow;
+}
+.runNum {
+    padding: 0px;
+}
+.noPad {
+    padding: 0px;
 }

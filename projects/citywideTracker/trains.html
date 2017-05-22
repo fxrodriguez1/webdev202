@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Train Predictions</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200|Raleway" rel="stylesheet">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Weather PWA">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="trains.js" type="text/javascript"></script>
+    </head>
+    <body id = #homebody>
+        <h1 id = "welcome">Select a line from the dropdown to get started</h1>
+        <div class="dropdown">
+            <button onclick="showRoutes()" class="dropbtn">Train Lines</button>
+            <div id="routeDropdown" class="dropdown-content dropdowncontentTrains">
+                <a href="#" id="Red" class="routeSelect ">Red</a>
+                <a href="#" id="Blue" class="routeSelect">Blue</a>
+                <a href="#" id="Pink" class="routeSelect">Pink</a>
+                <a href="#" id="Brn" class="routeSelect">Brown</a>
+                <a href="#" id="G" class="routeSelect">Green</a>
+                <a href="#" id="Org" class="routeSelect">Orange</a>
+                <a href="#" id="P" class="routeSelect">Purple</a>
+                <a href="#" id="Y" class="routeSelect">Yellow</a>
+            </div>
+        </div>
+        <div id = 'stopLists'>
+            <div id = "RedStops" class = "stopSelector">
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40900' ><li>Howard</li></a>
+                    <a href = '#' class = 'trainStop' id = '41190' ><li>Jarvis</li></a>
+                    <a href = '#' class = 'trainStop' id = '40100' ><li>Morse</li></a>
+                    <a href = '#' class = 'trainStop' id = '41300' ><li>Loyola</li></a>
+                    <a href = '#' class = 'trainStop' id = '40760' ><li>Granville</li></a>
+                    <a href = '#' class = 'trainStop' id = '40880' ><li>Thorndale</li></a>
+                    <a href = '#' class = 'trainStop' id = '41380' ><li>Bryn Mawr</li></a>
+                    <a href = '#' class = 'trainStop' id = '40340' ><li>Berwyn</li></a>
+                    <a href = '#' class = 'trainStop' id = '41200' ><li>Argyle</li></a>
+                    <a href = '#' class = 'trainStop' id = '40770' ><li>Lawrence</li></a>
+                    <a href = '#' class = 'trainStop' id = '40540' ><li>Wilson</li></a>
+                    <a href = '#' class = 'trainStop' id = '40800' ><li>Sherdian</li></a>
+                    <a href = '#' class = 'trainStop' id = '41440' ><li>Addison</li></a>
+                    <a href = '#' class = 'trainStop' id = '41320' ><li>Belmont</li></a>
+                    <a href = '#' class = 'trainStop' id = '41220' ><li>Fullerton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40650' ><li>North/Clybourn</li></a>
+                    <a href = '#' class = 'trainStop' id = '40630' ><li>Clark/Division</li></a>
+                    <a href = '#' class = 'trainStop' id = '41450' ><li>Chicago</li></a>
+                    <a href = '#' class = 'trainStop' id = '40330' ><li>Grand</li></a>
+                    <a href = '#' class = 'trainStop' id = '41660' ><li>Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '41090'><li>Monroe</li></a>
+                    <a href = '#' class = 'trainStop' id = '40560'><li>Jackson</li></a>
+                    <a href = '#' class = 'trainStop' id = '41490'><li>Harrison</li></a>
+                    <a href = '#' class = 'trainStop' id = '41400'><li>Roosevelt</li></a>
+                    <a href = '#' class = 'trainStop' id = '41000'><li>Cermak-Chinatown</li></a>
+                    <a href = '#' class = 'trainStop' id = '40190'><li>Sox-35th</li></a>
+                    <a href = '#' class = 'trainStop' id = '41230'><li>47th</li></a>
+                    <a href = '#' class = 'trainStop' id = '41170'><li>Garfield</li></a>
+                    <a href = '#' class = 'trainStop' id = '40910'><li>63rd</li></a>
+                    <a href = '#' class = 'trainStop' id = '40990'><li>69th</li></a>
+                    <a href = '#' class = 'trainStop' id = '40240'><li>79th</li></a>
+                    <a href = '#' class = 'trainStop' id = '41430'><li>87th</li></a>
+                    <a href = '#' class = 'trainStop' id = '40450'><li>95th/Dan Ryan</li></a>
+                </ul>
+            </div>    
+            <div id = "BlueStops" class = 'stopSelector'>    
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40890'><li>O'hare</li></a>
+                    <a href = '#' class = 'trainStop' id = '40820'><li>Rosemont</li></a>
+                    <a href = '#' class = 'trainStop' id = '40230'><li>Cumberland</li></a>
+                    <a href = '#' class = 'trainStop' id = '40750'><li>Harlem-O'hare</li></a>
+                    <a href = '#' class = 'trainStop' id = '41280'><li>Jefferson Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '41330'><li>Montrose</li></a>
+                    <a href = '#' class = 'trainStop' id = '40550'><li>Irving Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '41240'><li>Addison</li></a>
+                    <a href = '#' class = 'trainStop' id = '40060'><li>Belmont</li></a>
+                    <a href = '#' class = 'trainStop' id = '41020'><li>Logan Square</li></a>
+                    <a href = '#' class = 'trainStop' id = '40570'><li>California</li></a>
+                    <a href = '#' class = 'trainStop' id = '40670'><li>Western-O'hare</li></a>
+                    <a href = '#' class = 'trainStop' id = '40590'><li>Damen</li></a>
+                    <a href = '#' class = 'trainStop' id = '40320'><li>Division</li></a>
+                    <a href = '#' class = 'trainStop' id = '41410'><li>Chicago</li></a>
+                    <a href = '#' class = 'trainStop' id = '40490'><li>Grand</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40370'><li>Washington</li></a>
+                    <a href = '#' class = 'trainStop' id = '40790'><li>Monroe</li></a>
+                    <a href = '#' class = 'trainStop' id = '40070'><li>Jackson</li></a>
+                    <a href = '#' class = 'trainStop' id = '41340'><li>LaSalle</li></a>
+                    <a href = '#' class = 'trainStop' id = '40430'><li>Clinton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40350'><li>UIC-Halsted</li></a>
+                    <a href = '#' class = 'trainStop' id = '40470'><li>Racine</li></a>
+                    <a href = '#' class = 'trainStop' id = '40810'><li>Illinois Medical District</li></a>
+                    <a href = '#' class = 'trainStop' id = '40220'><li>Western-Forest Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '40250'><li>Kedzie-Homan</li></a>
+                    <a href = '#' class = 'trainStop' id = '40920'><li>Pulaski</li></a>
+                    <a href = '#' class = 'trainStop' id = '40970'><li>Cicero</li></a>
+                    <a href = '#' class = 'trainStop' id = '40010'><li>Austin</li></a>
+                    <a href = '#' class = 'trainStop' id = '40180'><li>Oak Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '40980'><li>Harlem-Forest Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '40390'><li>Forest Park</li></a>
+                </ul>
+            </div>    
+            <div id = 'PinkStops' class = 'stopSelector'>    
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40580'><li>54th/Cermak</li></a>
+                    <a href = '#' class = 'trainStop' id = '40420'><li>Cicero</li></a>
+                    <a href = '#' class = 'trainStop' id = '40600'><li>Kostner</li></a>
+                    <a href = '#' class = 'trainStop' id = '40150'><li>Pulaski</li></a>
+                    <a href = '#' class = 'trainStop' id = '40780'><li>Central Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '41040'><li>Kedzie</li></a>
+                    <a href = '#' class = 'trainStop' id = '40440'><li>California</li></a>
+                    <a href = '#' class = 'trainStop' id = '40740'><li>Western</li></a>
+                    <a href = '#' class = 'trainStop' id = '40210'><li>Damen</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>18th</li></a>
+                    <a href = '#' class = 'trainStop' id = '41030'><li>Polk</li></a>
+                    <a href = '#' class = 'trainStop' id = '40170'><li>Ashland</li></a>
+                    <a href = '#' class = 'trainStop' id = '41510'><li>Morgan</li></a>
+                    <a href = '#' class = 'trainStop' id = '41160'><li>Clinton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40260'><li>State/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40200'><li>Randolph/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40680'><li>Adams/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40850'><li>Harold Washington Library-State/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40160'><li>LaSalle/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40040'><li>Quincy</li></a>
+                    <a href = '#' class = 'trainStop' id = '40730'><li>Washington/Wells</li></a>
+                </ul>
+            </div>
+            <div id = 'BrnStops' class = 'stopSelector'>
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '41290'><li>Kimball</li></a>
+                    <a href = '#' class = 'trainStop' id = '41180'><li>Kedzie</li></a>
+                    <a href = '#' class = 'trainStop' id = '40870'><li>Francisco</li></a>
+                    <a href = '#' class = 'trainStop' id = '41010'><li>Rockwell</li></a>
+                    <a href = '#' class = 'trainStop' id = '41480'><li>Western</li></a>
+                    <a href = '#' class = 'trainStop' id = '40090'><li>Damen</li></a>
+                    <a href = '#' class = 'trainStop' id = '41500'><li>Montrose</li></a>
+                    <a href = '#' class = 'trainStop' id = '41460'><li>Irving Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '41420'><li>Addison</li></a>
+                    <a href = '#' class = 'trainStop' id = '41310'><li>Paulina</li></a>
+                    <a href = '#' class = 'trainStop' id = '40360'><li>Southport</li></a>
+                    <a href = '#' class = 'trainStop' id = '41230'><li>Belmont</li></a>
+                    <a href = '#' class = 'trainStop' id = '41210'><li>Wellington</li></a>
+                    <a href = '#' class = 'trainStop' id = '40530'><li>Diversy</li></a>
+                    <a href = '#' class = 'trainStop' id = '41220'><li>Fullerton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40660'><li>Armitage</li></a>
+                    <a href = '#' class = 'trainStop' id = '40800'><li>Sedgewick</li></a>
+                    <a href = '#' class = 'trainStop' id = '40710'><li>Chicago</li></a>
+                    <a href = '#' class = 'trainStop' id = '40460'><li>Merchandise Mart</li></a>
+                    <a href = '#' class = 'trainStop' id = '40730'><li>Washington/Wells</li></a>
+                    <a href = '#' class = 'trainStop' id = '40040'><li>Quincy</li></a>
+                    <a href = '#' class = 'trainStop' id = '40160'><li>LaSalle/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40850'><li>Harold Washington Library-State and Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40680'><li>Adams/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40200'><li>Randolph/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40260'><li>State/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/Lake</li></a>
+                </ul>
+            </div>  
+            <div id = 'GStops' class = 'stopSelector'>
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40020'><li>Harlem/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '41350'><li>Oak Park</li></a>
+                    <a href = '#' class = 'trainStop' id = '40610'><li>Ridgeland</li></a>
+                    <a href = '#' class = 'trainStop' id = '41260'><li>Austin</li></a>
+                    <a href = '#' class = 'trainStop' id = '40280'><li>Central</li></a>
+                    <a href = '#' class = 'trainStop' id = '40700'><li>Laramie</li></a>
+                    <a href = '#' class = 'trainStop' id = '40480'><li>Cicero</li></a>
+                    <a href = '#' class = 'trainStop' id = '40030'><li>Pulaski</li></a>
+                    <a href = '#' class = 'trainStop' id = '41670'><li>Conservatory-Central Park Drive</li></a>
+                    <a href = '#' class = 'trainStop' id = '41070'><li>Kedzie</li></a>
+                    <a href = '#' class = 'trainStop' id = '41360'><li>California</li></a>
+                    <a href = '#' class = 'trainStop' id = '40170'><li>Ashland</li></a>
+                    <a href = '#' class = 'trainStop' id = '41510'><li>Morgan</li></a>
+                    <a href = '#' class = 'trainStop' id = '41160'><li>Clinton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40260'><li>State/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40200'><li>Randolph/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40680'><li>Adams/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '41400'><li>Roosevelt</li></a>
+                    <a href = '#' class = 'trainStop' id = '41690'><li>Cermak-McCormick Place</li></a>
+                    <a href = '#' class = 'trainStop' id = '41120'><li>35th-Bronzeville-IIT</li></a>
+                    <a href = '#' class = 'trainStop' id = '40300'><li>Indiana</li></a>
+                    <a href = '#' class = 'trainStop' id = '41270'><li>43rd</li></a>
+                    <a href = '#' class = 'trainStop' id = '41080'><li>47th</li></a>
+                    <a href = '#' class = 'trainStop' id = '40130'><li>51st</li></a>
+                    <a href = '#' class = 'trainStop' id = '40510'><li>Garfield</li></a>
+                    <a href = '#' class = 'trainStop' id = '41140'><li>King Drive</li></a>
+                    <a href = '#' class = 'trainStop' id = '40720'><li>Cottage Grove</li></a>
+                    <a href = '#' class = 'trainStop' id = '40940'><li>Halsted</li></a>
+                    <a href = '#' class = 'trainStop' id = '40290'><li>Ashland/63rd</li></a>
+                </ul>
+            </div>    
+            <div id = 'OrgStops' class = 'stopSelector'>   
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40930'><li>Midway</li></a>
+                    <a href = '#' class = 'trainStop' id = '40960'><li>Pulaski</li></a>
+                    <a href = '#' class = 'trainStop' id = '41150'><li>Kedzie</li></a>
+                    <a href = '#' class = 'trainStop' id = '40310'><li>Western</li></a>
+                    <a href = '#' class = 'trainStop' id = '40120'><li>35th/Archer</li></a>
+                    <a href = '#' class = 'trainStop' id = '41060'><li>Ashland</li></a>
+                    <a href = '#' class = 'trainStop' id = '41130'><li>Halsted</li></a>
+                    <a href = '#' class = 'trainStop' id = '41400'><li>Roosevelt</li></a>
+                    <a href = '#' class = 'trainStop' id = '40850'><li>Harold Washington Library-State/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40160'><li>LaSalle/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40040'><li>Quincy</li></a>
+                    <a href = '#' class = 'trainStop' id = '40730'><li>Washington/Wells</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40260'><li>State/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40200'><li>Randolph/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40680'><li>Adams/Wabash</li></a>
+                </ul>
+            </div>
+            <div id = 'PStops' class = 'stopSelector'>
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '41050'><li>Linden</li></a>
+                    <a href = '#' class = 'trainStop' id = '41250'><li>Central</li></a>
+                    <a href = '#' class = 'trainStop' id = '40400'><li>Noyes</li></a>
+                    <a href = '#' class = 'trainStop' id = '40520'><li>Foster</li></a>
+                    <a href = '#' class = 'trainStop' id = '40050'><li>Davis</li></a>
+                    <a href = '#' class = 'trainStop' id = '40690'><li>Dempster</li></a>
+                    <a href = '#' class = 'trainStop' id = '40270'><li>Main</li></a>
+                    <a href = '#' class = 'trainStop' id = '40840'><li>South Blvd</li></a>
+                    <a href = '#' class = 'trainStop' id = '40900'><li>Howard</li></a>
+                    <a href = '#' class = 'trainStop' id = '40540'><li>Wilson</li></a>
+                    <a href = '#' class = 'trainStop' id = '40080'><li>Sherdian</li></a>
+                    <a href = '#' class = 'trainStop' id = '41230'><li>Belmont</li></a>
+                    <a href = '#' class = 'trainStop' id = '41210'><li>Wellington</li></a>
+                    <a href = '#' class = 'trainStop' id = '40530'><li>Diversey</li></a>
+                    <a href = '#' class = 'trainStop' id = '41220'><li>Fullerton</li></a>
+                    <a href = '#' class = 'trainStop' id = '40660'><li>Armitage</li></a>
+                    <a href = '#' class = 'trainStop' id = '40800'><li>Sedgewick</li></a>
+                    <a href = '#' class = 'trainStop' id = '40710'><li>Chicago</li></a>
+                    <a href = '#' class = 'trainStop' id = '40460'><li>Merchandise Mart</li></a>
+                    <a href = '#' class = 'trainStop' id = '40380'><li>Clark/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40260'><li>State/Lake</li></a>
+                    <a href = '#' class = 'trainStop' id = '40200'><li>Randolph/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40680'><li>Adams/Wabash</li></a>
+                    <a href = '#' class = 'trainStop' id = '40850'><li>Harold Washington Library-State/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40160'><li>LaSalle/Van Buren</li></a>
+                    <a href = '#' class = 'trainStop' id = '40040'><li>Quincy</li></a>
+                    <a href = '#' class = 'trainStop' id = '40730'><li>Washington/Wells</li></a>
+                </ul>
+            </div>
+            <div id = 'YStops' class = 'stopSelector'>
+                <ul>
+                    <a href = '#' class = 'trainStop' id = '40140'><li>Dempster-Skokie</li></a>
+                    <a href = '#' class = 'trainStop' id = '41680'><li>Oakton-Skokie</li></a>
+                    <a href = '#' class = 'trainStop' id = '40900'><li>Howard</li></a>
+                </ul>
+            </div>
+        </div>
+            
+        <div id = "pred">
+        <div class = 'nBound dirBox container'>
+            
+        </div>
+        <div class = 'sBound dirBox container'>
+            
+        </div>
+        </div>    
+        <div class = "toTracker">
+            <p><a href = "buses.html">Bus Tracker</a></p>
+        </div><br>        
+        <!--<script>
+            
+            function showRoutes() {
+                document.getElementById("routeDropdown").classList.toggle("show");
+            };
+            
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+            
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            };
+            $("body").on("click", ".routeSelect", function(e) {
+            
+                var line = $(this).attr("id");
+            
+                console.log(line);
+
+                console.log("#" + line + "Stops");
+               
+                $("#" + line + "Stops").show();
+                
+                    $("body").on("click", ".trainStop", function(e) {
+                
+                    var mapID = $(this).attr("id");
+                    
+                    var stopName = $(this).text();
+                    
+                    console.log(stopName);
+                
+                    console.log(mapID);
+                   
+                    $(".routeSelect").hide();
+                    $(".dropdown").hide();    
+                    $("#welcome").hide();
+                    $("#stopLists").hide();
+                
+                
+                        $(function() { 
+                     
+                            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+                        
+                            var apiEndpoint = "lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
+                            
+                             $.ajax({
+                                 url: apiPassThruUrl,
+                                 dataType: "json",
+                                 method: 'GET',
+                                 data: {
+                                     "apiEndpoint": apiEndpoint,
+                                     "mapid": mapID,
+                                     "rt": line,
+                                     "key": "93e9c6eff8cf4a74bf1600b51c193a18",
+                                     "outputType": "json"
+                                 }
+                             }).done (function (data) {
+                              console.log(data);
+                              $("#pred").prepend("<h1>" + "Arrival times for " + stopName + 
+                              "</h1>" + "<br>");
+                              $(".nBound").append("<h2>" + "Northbound" + "</h2>");
+                              $(".sBound").append("<h2>" + "Southbound" + "</h2>");
+                              
+                              $.each(data["ctatt"]["eta"], function(i,v) {
+                                 
+                                    var arrivalTime = v.arrT;
+                                    var arrSec = arrivalTime.slice(-2);
+                                    var arrMin = arrivalTime.slice(14, 16);
+                                    var arrHrs = arrivalTime.slice(11, 13);
+                                    var secMS = arrSec*1000;
+                                    var minMS = arrMin*60*1000;
+                                    var hrsMS = arrHrs*3600*1000;
+                                    var ETAMS = secMS + minMS + hrsMS;
+                                    var callTime = v.prdt;
+                                    var callSec = callTime.slice(-2);
+                                    var callMin = callTime.slice(14, 16);
+                                    var callHrs = callTime.slice(11, 13);
+                                    var callSecMS = callSec*1000;
+                                    var callMinMS = callMin*60*1000;
+                                    var callHrsMS = callHrs*3600*1000;
+                                    var PRDMS = callSecMS + callMinMS + callHrsMS;
+                                    var timeTilArrivalMS = ETAMS-PRDMS;
+                                    console.log(timeTilArrivalMS);
+                                    var timeTilArrivalSec = timeTilArrivalMS/1000;
+                                    var timeTilArrivalMin = timeTilArrivalSec/60;
+                                    console.log(timeTilArrivalMin);
+                                    
+                                    if (v.trDr === "1") {
+                                            if (v.isApp === "1") {
+                                            $(".sBound").append("<div class = 'trainBox'>" + "<h3>" + "Due" + "</h3>" + "<br>" +
+                                            "Station: " + v.staNm + ", " + v.stpDe + "<br>" + "Run number: " 
+                                            + v.rn + "<br>" + "<a class = 'noPad' href = '#'>" + "Follow this train" + "</div>" + "</a>");
+                                            } else {
+                                            $(".nBound").append("<div class = 'trainBox'>" + "<h3>"+ "Arrival Time: " + timeTilArrivalMin 
+                                            + " Minutes " + "</h3>" + "<br>"  +  "<p>" + "Station: " + v.staNm + ", " + v.stpDe + "</p>" + 
+                                            "<br>" + 
+                                            "<p class = 'runNum'>" + "Run number: " 
+                                            + v.rn + "</p>" + "<br>"
+                                            + "<a class = 'noPad' href = '#'>" + "Follow this train" + "</div>" + "</a>");
+                                            } 
+                                    }
+                                    if (v.trDr === "5") {
+                                            if (v.isApp === "1") {
+                                            $(".sBound").append("<div class = 'trainBox'>" + "<h3>" + "Due" + "</h3>" + "<br>" +
+                                            "Station: " + v.staNm + ", " + v.stpDe + "<br>" + "Run number: " 
+                                            + v.rn + "<br>" + "<a class = 'noPad' href = '#'>" + "Follow this train" + "</div>" + "</a>");
+                                            } else {
+                                            $(".sBound").append("<div class = 'trainBox'>" + "<h3>"+ "Arrival Time: " + timeTilArrivalMin 
+                                            + " Minutes " + "</h3>" + "<br>"  +  "<p>" + "Station: " + v.staNm + ", " + v.stpDe + "</p>" + 
+                                            "<br>" + 
+                                            "<p class = 'runNum'>" + "Run number: " 
+                                            + v.rn + "</p>" + "<br>"
+                                            + "<a class = 'noPad' href = '#'>" + "Follow this train" + "</div>" + "</a>");
+                                            } 
+                                    }
+                                    
+                            });
+                    
+                        });
+                    });
+                });
+            });    
+        </script>-->
+    </body>
+</html>

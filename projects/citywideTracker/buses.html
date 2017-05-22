@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bus Predictions Enter Page </title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200|Raleway" rel="stylesheet">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Weather PWA">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="buses.js" type="text/javascript"></script>
+    </head>
+    <body id = #homebody>
+    <div id = "pred"></div>    
+        <h1 id = "welcome">Select a route from the dropdown to find it's times</h1>
+        <div class="dropdown">
+            <button onclick="showRoutes()" class="dropbtn">Routes</button>
+            <div id="routeDropdown" class="dropdown-content ">
+                
+            </div>
+        </div>
+        <div id = "directions"></div>
+        
+        <div id = 'stops'></div>
+        <div class = "toTracker">
+            <p><a href = "trains.html">Train Tracker</a></p><br>
+        </div>   
+
+    </body>
+</html>

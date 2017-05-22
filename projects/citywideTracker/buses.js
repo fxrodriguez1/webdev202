@@ -1,34 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bus Predictions Enter Page </title>
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200|Raleway" rel="stylesheet">
-        <!--<link rel="manifest" href="/manifest.json"> -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Weather PWA">
-        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
-        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
-        <meta name="msapplication-TileColor" content="#2F3BA2">
-    </head>
-    <body id = #homebody>
-    <div id = "pred"></div>    
-        <h1 id = "welcome">Select a route from the dropdown to find it's times</h1>
-        <div class="dropdown">
-            <button onclick="showRoutes()" class="dropbtn">Routes</button>
-            <div id="routeDropdown" class="dropdown-content">
-                
-            </div>
-        </div>
-        <div id = "directions"></div>
-        
-        <div id = 'stops'></div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-
-        <script>
-            
+// BUSES JavaScript File
+    
             /* When the user clicks on the button, 
             toggle between hiding and showing the dropdown content */
             function showRoutes() {
@@ -69,7 +40,7 @@
               console.log(data);
               $.each(data["bustime-response"]["routes"], function(i,v) {
                   $(".dropdown-content").append(
-                      "<a href = '#' id =" + v.rt + " class = routeSelect" + ">" + v.rt + " - " + v.rtnm + "</a>"
+                      "<a href = '#' id =" + v.rt + " class = routeSelect busDropdown" + ">" + v.rt + " - " + v.rtnm + "</a>"
                     );
               });
 
@@ -200,6 +171,3 @@
              });     
         }); 
         });
-        </script>
-    </body>
-</html>

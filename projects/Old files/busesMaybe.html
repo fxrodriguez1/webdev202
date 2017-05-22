@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bus Time Predictions</title>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200|Raleway" rel="stylesheet">
+        <!--<link rel="manifest" href="/manifest.json"> -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Weather PWA">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
+    </head>
+    <body id = #homebody>
+    <div id = "pred"></div>    
+        <h1 id = "welcome">Select a route from the dropdown to find it's times</h1>
+        <div class="dropdown">
+            <button onclick="showRoutes()" class="dropbtn">Routes</button>
+            <div id="routeDropdown" class="dropdown-content ">
+                
+            </div>
+        </div>
+        <div id = "directions"></div>
+        
+        <div id = 'stops'></div>
+        <div class = "toTracker">
+            <p><a href = "trains.html">Click here to use Train Tracker</a></p>
+        </div> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+
+        <script>
+            
+            /* When the user clicks on the button, 
+            toggle between hiding and showing the dropdown content */
+            function showRoutes() {
+                document.getElementById("routeDropdown").classList.toggle("show");
+            }
+            
+            // Close the dropdown menu if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+            
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    var i;
+                    for (i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            };
+         
+         $(function() { 
+             
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+        
+            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+            
+             $.ajax({
+                 url: apiPassThruUrl,
+                 dataType: "json",
+                 method: 'GET',
+                 data: {
+                     "apiEndpoint": apiEndpoint,
+                     "key": "xiP5GrU6kqvnMUgxPeMwATG2v",
+                     "format": "json"
+                 }
+             }).done (function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["routes"], function(i,v) {
+                  $(".dropdown-content").append(
+                      "<a href = '#' id =" + v.rt + " class = busDropdown" + ">" + v.rt + " - " + v.rtnm + "</a>"
+                    );
+              });
+
+            });
+         
+         $("body").on("click", ".routeSelect", function(e) {
+             
+             var route = $(this).attr("id");
+             
+             console.log(route);
+            
+            $(function() {
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+        
+            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getdirections";
+            
+             $.ajax({
+                 url: apiPassThruUrl,
+                 dataType: "json",
+                 method: 'GET',
+                 data: {
+                     "apiEndpoint": apiEndpoint,
+                     "key": "xiP5GrU6kqvnMUgxPeMwATG2v",
+                     "rt": route,
+                     "format": "json"
+                 }
+             }).done (function (data) {
+              console.log(data);
+              $("#directions").append(
+                 "<h1 class = 'directionSelect'>" + "Select a direction below" + "</h1>" + "<br>"  
+              );
+              $.each(data["bustime-response"]["directions"], function(i,v) {
+                  $("#directions").append(
+                      "<a href = '#' id =" + v.dir + " class = directionSelect" + ">" + v.dir + "</a>" + "<br>"
+                    );
+              });
+              $("body").on("click", ".directionSelect", function(e) {
+             
+             var direction = $(this).attr("id");
+             
+             console.log(direction);  
+             
+             $(".directionSelect").hide();
+             
+              
+            $(function() {
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+        
+            var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getstops";
+            
+             $.ajax({
+                 url: apiPassThruUrl,
+                 dataType: "json",
+                 method: 'GET',
+                 data: {
+                     "apiEndpoint": apiEndpoint,
+                     "key": "xiP5GrU6kqvnMUgxPeMwATG2v",
+                     "rt": route,
+                     "dir": direction, 
+                     "format": "json"
+                 }
+             }).done (function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["stops"], function(i,v) {
+                  $("#stops").append(
+                      "<a href = '#' id =" + v.stpid + " class = stopSelect" + ">" + v.stpnm + "</a>" + "<br>" 
+                    );
+              });
+            
+            });     
+         });  
+              });
+            });
+            
+         });
+         
+        
+        $("body").on("click", ".stopSelect", function(e) {
+             
+             var stop = $(this).attr("id");
+             
+             console.log(stop);
+             
+             $(".stopSelect").hide();
+             $(".dropdown").hide();
+             $("#welcome").hide();
+             
+             $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "xiP5GrU6kqvnMUgxPeMwATG2v",
+                      "rt" : route,
+                      "stpid" :stop,
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $("#pred").append("<h1 id = 'predictionHeader'>" + 
+              "Bus Time Predictions" + "</h1>" + "<p>" + "<br>"
+              + "Refresh to see another route" + "</p>");
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $("#pred").append("<div class = 'box'>" + 
+                  "<h2 id = 'stopHead'>Stop: " 
+                  + v.stpnm + "</h2>" + "<div id = 'contents>'" + "<br>" + 
+                  "<p class = 'nobr'> Direction: "
+                  + v.rtdir + "</p>" +
+                  "<p> Destination: " + v.des + "</p>" 
+                  + "<p class = 'bold' id = estimate>"+ "Time until Arrival: "
+                  + v.prdctdn + " minutes" + "</p>" + "</div>"
+                   ) 
+                + "</div>";
+              });
+              $.each(data["bustime-response"]["error"], function(i,v) {
+                $("#pred").append("<h1 id = 'error'>" + v.msg + "</h1>");  
+              });
+
+            });
+        });
+             });     
+        }); 
+        });
+        </script>
+    </body>
+</html>
