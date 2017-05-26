@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drawwing with Canvas Element</title>
+        <style>
+            canvas {
+              border: #333 10px solid;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <canvas id="myCanvas" width="500px" height="500px"></canvas>
+        
+        <script>
+            
+            var canvas = document.querySelector("#myCanvas");
+            var context = canvas.getContext("2d");
+            
+            
+            
+              context.beginPath();
+              context.arc(250, 200, 200, 0, Math.PI, false);
+              context.closePath();
+              context.lineWidth = 5;
+              context.fillStyle = 'brown';
+              context.fill();
+              context.strokeStyle = '#550000';
+              context.stroke();
+            
+            context.moveTo(150,200);
+            context.lineTo(150,20);
+            context.stroke();
+            
+            context.moveTo(150,20);
+            context.lineTo(400,90);
+            context.lineTo(150,130);
+            context.lineWidth = 1;
+            context.fillStyle = 'red';
+            context.stroke();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 490);
+            context.bezierCurveTo(150, 420, 300, 490, 490, 480);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 480);
+            context.bezierCurveTo(150, 410, 300, 480, 490, 470);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 470);
+            context.bezierCurveTo(150, 400, 300, 470, 490, 460);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 460);
+            context.bezierCurveTo(150, 390, 300, 460, 490, 450);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 450);
+            context.bezierCurveTo(150, 380, 300, 450, 490, 440);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+            
+            context.lineWidth = 4;
+            context.beginPath();
+            context.moveTo(10, 440);
+            context.bezierCurveTo(150, 370, 300, 440, 490, 430);
+            context.stroke();
+            context.strokeStyle = "blue";
+            context.stroke();
+            context.closePath();
+        </script>
+        
+    </body>
+    
+</html>
